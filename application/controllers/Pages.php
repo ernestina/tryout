@@ -41,12 +41,23 @@ class Pages extends CI_Controller {
         $this->load->view('templates/footer', $data);
 	}
 	
-	public function tes(){
-		$this->load->model('example_model'); 
-		$this->data['record'] = $this->example_model->get_profil('KANWIL ACEH');
-		//$this->load->view('header_view', $this->data);
-		$this->load->view('example_view', $this->data);
-		//$this->load->view('footer_view');
+	public function tes($page = 'soal'){
+		if ( ! file_exists(APPPATH.'views/pages/'.$page.'.php'))
+        {
+                // Whoops, we don't have a page for that!
+                show_404();
+        }
+		$data['title'] = 'Tryout STAN'; // Capitalize the first letter
+        
+        $this->load->model('soal_model'); 
+        //var_dump($this->soal_model->get_soal()); die;
+		$data['record'] = $this->soal_model->get_soal();
+        //var_dump($data['record']);
+        
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('pages/'.$page, $data);
+        $this->load->view('templates/footer', $data);
 	}	
 	
 }
