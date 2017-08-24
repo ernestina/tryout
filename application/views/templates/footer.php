@@ -50,20 +50,20 @@
     <script src="<?php echo base_url().'main/js/toastr.js'; ?>"></script>
     <!--script src="<?php //echo base_url().'main/js/pagination.min.js'; ?>"></script-->
 
-    <!--script type="text/javascript">
+    <script type="text/javascript">
 	$(document).ready(function() {
-		$("#results" ).load("soal.php"); //load initial records
+		$("#results" ).load("<?php echo base_url().'pages/load_soal';?>"); //load initial records
 		//executes code below when user click on pagination links
 		$("#results").on( "click", ".pagination a", function (e){
 			e.preventDefault();
-			$(".loading-div").show(); //show loading element
+			//$(".loading-div").show(); //show loading element
 			var page = $(this).attr("data-page"); //get page number from link
-			$("#results").load("soal.php",{"page":page}, function(){ //get content from PHP page
-				$(".loading-div").hide(); //once done, hide loading element
+			$("#results").load("<?php echo base_url().'pages/load_soal';?>",{"page":page}, function(){ //get content from PHP page
+				//$(".loading-div").hide(); //once done, hide loading element
 			});
 		});	
 	});
-	</script-->
+	</script>
 
 
     <!--script>

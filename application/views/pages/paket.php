@@ -24,7 +24,7 @@
                                     <div class="card-block">
                                         <h4 class="card-title">PAKET A</h4>
                                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                        <a href="<?php echo base_url().'pages/view/soal';?>" class="btn btn-primary">Go somewhere</a>
+                                        <a href="<?php echo base_url().'pages/tes/soal';?>" class="btn btn-primary">Go somewhere</a>
                                     </div>
                                 </div>
                                 <!-- Card -->

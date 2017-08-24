@@ -24,11 +24,39 @@
     <!-- You can change the theme colors from here -->
     <link href="<?php echo base_url().'main/css/colors/blue.css'; ?>" id="theme" rel="stylesheet">
     <link href="<?php echo base_url().'assets/plugins/tablesaw-master/dist/tablesaw.css';?>" rel="stylesheet">
+    
     <style>
-    body {
-        color: blue;
-    }
-    </style>
+
+        /* Pagination style */
+        .pagination{margin:0;padding:0;}
+        .pagination li{
+            display: inline;
+            padding: 6px 10px 6px 10px;
+            border: 1px solid #ddd;
+            margin-right: -1px;
+            font: 15px/20px Arial, Helvetica, sans-serif;
+            background: #FFFFFF;
+            box-shadow: inset 1px 1px 5px #F4F4F4;
+        }
+        .pagination li a{
+            text-decoration:none;
+            color: rgb(89, 141, 235);
+        }
+        .pagination li.first {
+            border-radius: 5px 0px 0px 5px;
+        }
+        .pagination li.last {
+            border-radius: 0px 5px 5px 0px;
+        }
+        .pagination li:hover{
+            background: #CFF;
+        }
+        .pagination li.active{
+            background: #F0F0F0;
+            color: #333;
+        }
+        </style>
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>

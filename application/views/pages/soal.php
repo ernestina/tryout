@@ -5,19 +5,26 @@
 <div class="row">
     <div class="col-12">
         <!--div class="loading-div"><img src="<?php //echo base_url().'assets/images/Spinner.gif';?>" ></div-->
-        <!--div id="results"><!-- content will be loaded here --><!--/div-->
+        <div id="results"><!-- content will be loaded here --></div>
         <?php //var_dump($page_number); ?>
         <table cellspacing="30" class='table table-striped' border="1">
 			<td align="center" >ID</td>
 			<td align="center" >Nama Soal</td>
             
 			<?php 
+            $no = 1;
             foreach ($record as $item): ?>
                 <tr>
+					<td><?php echo $no; ?></td>
 					<td><?php echo $item->id; ?></td>
 					<td><?php echo $item->soal; ?></td>
 				</tr>
+                <?php $no++; ?>
 			<?php endforeach; ?>
+            <?php 
+                echo 'PAGE SOAL' . '<br>'; 
+                echo 'Total Row: ' . ($no-1) . '<br>';
+            ?>
 		</table>
     </div>
 </div>
