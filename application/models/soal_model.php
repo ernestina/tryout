@@ -6,16 +6,20 @@ class soal_model extends CI_Model {
 		parent::__construct();
 	}
 
-	public function get_soal(){
+	public function get_soal($item_per_page=null, $page_number=null){
 
-        $sql = "select * from soal";
+		$page_position = (($page_number-1) * $item_per_page);		
+		
+		$this->db->select('ID');
+		$this->db->select('SOAL');
+		$this->db->from('SOAL');
+		if($item_per_page != null){
+			$this->db->limit($item_per_page, $page_position);
+		}
+		$query = $this->db->get(); 
         
-		/*if($filter != null){
-			$this->db->where('kd_satker', $filter);
-		}*/
+        //var_dump($query->result());
         
-		$query = $this->db->query($sql);
-        //var_dump($query->result()); die;
 		return $query->result();
 	}
 

@@ -63,6 +63,33 @@
 			});
 		});	
 	});
+    
+    function startTimer(duration, display) {
+        var timer = duration, hours, minutes, seconds;
+        setInterval(function () {
+            hours = parseInt(timer / 3600)
+            minutes = parseInt(timer / 60, 10)
+            seconds = parseInt(timer % 60, 10);
+
+            hours = hours < 10 ? "0" + hours : hours;
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+
+            display.text(hours + ":" + minutes + ":" + seconds);
+
+            if (--timer < 0) {
+                //timer = duration;
+                display.text('stop');
+                window.location.replace("<?php echo base_url();?>");
+            }
+        }, 1000);
+    }
+
+    jQuery(function ($) {
+        var fiveMinutes = 60 * 60,
+            display = $('#results .time');
+        startTimer(fiveMinutes, display);
+    });
 	</script>
 
 
