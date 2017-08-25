@@ -97,11 +97,17 @@ class Pages extends CI_Controller {
                     <div class="row pagination">
                     <?php
                     //echo '';
-                    for($i=1;$i<=$get_total_rows; $i++){
+                    $i = 1;
+                    for($i; $i<=$get_total_rows; $i++){
                         echo '<div class="col-md-6 col-lg-3 col-xlg-3"><div class="card">
                         <a href="#" data-page="'.$i.'" class="btn btn-lg btn-success btn-circle">'.$i.' '.'</a>
                         </div></div>'; 
                         //<button type="button" class="btn btn-success btn-circle"><i class="fa fa-link"></i> </button>
+                    }
+                    //echo $get_total_rows . '<br>';
+                    //echo ($i - 1);                     
+                    if($get_total_rows == ($i-1)){
+                        echo 'finish';
                     }
                     ?>
                     </div>
