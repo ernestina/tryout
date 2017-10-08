@@ -14,7 +14,7 @@ class Soal extends CI_Controller {
         if ( !file_exists(APPPATH.'views/mypages/'.$page.'.php')){
 			show_404();
         }
-		
+				$this->data['get_total_rows'] = sizeOf($this->soal_model->get_soal());
         $this->data['title'] = 'Tryout STAN';
         $this->load->view('templates/topbar', $this->data);
         $this->load->view('templates/sidebar');

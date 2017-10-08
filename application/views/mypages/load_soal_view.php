@@ -1,6 +1,7 @@
 <?php foreach($result as $item):  ?>
 	<div class="p-20">
 		<h2 class="font-medium text-inverse"><?php echo $item->ID; ?></h2>
+		<input type="hidden" name="nomor_soal" value="<?php echo $item->ID; ?>"></input>
 		<h6 class="card-subtitle">Kategori: Bahasa Inggris</h6><p><?php echo $item->SOAL; ?></p>
 	
 	<form class="m-t-40" novalidate>
@@ -13,7 +14,7 @@
 					for($i=0; $i<count($jawaban); $i++ ){ ?>
 						<fieldset class="controls">
 							<label class="custom-control custom-radio">
-								<input type="radio" value="<?php echo $i; ?>" name="styled_radio" required id="styled_radio1" class="custom-control-input"> <span class="custom-control-indicator"></span> <span class="custom-control-description"><?php echo $jawaban[$i]; ?></span> </label>
+								<input type="radio" value="<?php echo $i+1; ?>" name="styled_radio" required id="styled_radio1" class="custom-control-input"> <span class="custom-control-indicator"></span> <span class="custom-control-description"><?php echo $jawaban[$i]; ?></span> </label>
 						</fieldset>
 					<?php }
 				?>

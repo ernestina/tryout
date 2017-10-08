@@ -52,6 +52,12 @@
 	
 	<script>
 	$(document).ready(function() {
+		var total_rows = <?php echo $get_total_rows; ?>;
+		window.jawaban = [];		
+		for (i = 1; i <= total_rows; i++) {
+			jawaban.push([i,""]);
+		}
+
 		//load initial records
 		$("#results" ).load("<?php echo base_url().'soal/load_soal';?>");
 		$("#all_soal" ).load("<?php echo base_url().'soal/load_all_soal';?>");
@@ -62,26 +68,57 @@
 			//$(".loading-div").show(); //show loading element
 			var page = $(this).attr("data-page"); //get page number from link
 			$("#results").load("<?php echo base_url().'soal/load_soal';?>",{"page":page}, function(){ //get content from PHP page
-				//$(".loading-div").hide(); //once done, hide loading element
+				var nomor_soal = $("input[type='hidden'][name='nomor_soal']").val() - 1;
+				if(jawaban[nomor_soal][1] != ""){
+					$("input[type='radio'][name='styled_radio'][value='"+ jawaban[nomor_soal][1] +"']").prop('checked', true);
+				}
 			});
-			$("#all_soal .pagination a").removeClass("btn-danger").addClass("btn-success");
-			$("#all_soal .pagination a[data-page='"+page+"']").removeClass("btn-success").addClass("btn-danger");
+
+/* 			$("#all_soal .pagination a").removeClass("btn-danger").addClass("btn-success");
+			$("#all_soal .pagination a[data-page='"+page+"']").removeClass("btn-success").addClass("btn-danger"); */
 		});	
 		
 		//executes code below when user click on pagination links
 		$("#all_soal").on( "click", ".pagination a", function (e){
 			e.preventDefault();
-			//$(".loading-div").show(); //show loading element
+			var nomor_soal = $("input[type='hidden'][name='nomor_soal']").val() - 1;
 			var page = $(this).attr("data-page"); //get page number from link
-			$("#results").load("<?php echo base_url().'soal/load_soal';?>",{"page":page}, function(){ //get content from PHP page
-				//$(".loading-div").hide(); //once done, hide loading element
+			$("#results").load("<?php echo base_url().'soal/load_soal';?>",{"page":page}, function(){ 
+				var nomor_soal = $("input[type='hidden'][name='nomor_soal']").val() - 1;
+				if(jawaban[nomor_soal][1] != ""){
+					$("input[type='radio'][name='styled_radio'][value='"+ jawaban[nomor_soal][1] +"']").prop('checked', true);
+				}
 			});
-			$("#all_soal .pagination a").removeClass("btn-danger").addClass("btn-success");
-			$("#all_soal .pagination a[data-page='"+page+"']").removeClass("btn-success").addClass("btn-danger");			
+		});
+
+		$("#results").on( "change", "input[type='radio'][name='styled_radio']", function (e){
+			e.preventDefault();
+			var nomor_soal = $("input[type='hidden'][name='nomor_soal']").val() - 1;
+			if ($("input[type='radio'][name='styled_radio']:checked").val() == '1') {
+					jawaban[nomor_soal][1] = 1;
+			}
+			if ($("input[type='radio'][name='styled_radio']:checked").val() == '2') {
+					jawaban[nomor_soal][1] = 2;
+			}
+			if ($("input[type='radio'][name='styled_radio']:checked").val() == '3') {
+					jawaban[nomor_soal][1] = 3;
+			}
+			if ($("input[type='radio'][name='styled_radio']:checked").val() == '4') {
+					jawaban[nomor_soal][1] = 4;
+			}			
+			$("#ngetes").text(jawaban);
+			
+			for(i=0;i<jawaban.length;i++){
+				if(jawaban[i][1] != ""){
+					var j = i+1;
+					$("#all_soal .pagination a[data-page='"+j+"']").removeClass("btn-success btn-danger").removeClass("btn-warning").addClass("btn-info");
+				}
+			}			
+			
 		});			
 	});
-	</script>
 	
+	</script>
     <!--script>
         $.toast({
             heading: 'Welcome to Monster admin',
